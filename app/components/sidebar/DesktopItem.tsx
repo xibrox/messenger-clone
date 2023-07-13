@@ -48,7 +48,7 @@ const DesktopItem: React.FC<DesktopItemProps> = ({
                 <span className="sr-only">{label}</span>
             </Link>
         </li>
-    )
-}
+    );
+};
 
-export default DesktopItem
+export default DesktopItem;

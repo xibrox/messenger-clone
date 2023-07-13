@@ -76,8 +76,8 @@ const Modal: React.FC<ModalProps> = ({
                                     overflow-hidden
                                     rounded-lg
                                     bg-white
-                                    px-4
-                                    pb-4
+                                    px-6
+                                    py-6
                                     text-left
                                     shadow-xl
                                     transition-all
