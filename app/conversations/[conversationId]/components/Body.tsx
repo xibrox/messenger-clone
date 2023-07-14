@@ -88,7 +88,7 @@ const Body: React.FC<BodyProps> = ({ initialMessages }) => {
           onDelete={() => handleDeleteMessage(message.id)}
         />
       ))}
-      <div ref={bottomRef} className="pt-24" />
+      <div ref={bottomRef} className="pt-30" />
     </div>
   );
 };

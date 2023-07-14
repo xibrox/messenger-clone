@@ -21,7 +21,7 @@ const MessageBox: React.FC<MessageBoxProps> = ({
 }) => {
   const session = useSession();
   const [imageModalOpen, setImageModalOpen] = useState(false);
-  const [date, setDate] = useState<null | string>(null);
+  // const [date, setDate] = useState<null | string>(null);
 
   const isOwn = session?.data?.user?.email === data?.sender?.email;
   const seenList = (data.seen || [])
@@ -47,9 +47,9 @@ const MessageBox: React.FC<MessageBoxProps> = ({
     data.image ? "rounded-md p-0" : "rounded-full py-2 px-3",
   );
 
-  useEffect(() => {
-    setDate(format(new Date(data.createdAt), 'HH:mm'));
-  }, [data.createdAt]);
+  // useEffect(() => {
+  //   setDate(format(new Date(data.createdAt), 'HH:mm'));
+  // }, [data.createdAt]);
 
   return (
     <div className={container}>
@@ -62,7 +62,7 @@ const MessageBox: React.FC<MessageBoxProps> = ({
             {data.sender.name}
           </div>
           <div className="text-xs text-gray-400">
-            {date}
+            {format(new Date(data.createdAt), 'HH:mm')}
           </div>
         </div>
         <div className={message}>

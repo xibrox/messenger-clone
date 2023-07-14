@@ -24,7 +24,7 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
     const otherUser = useOtherUser(data);
     const session = useSession();
     const router = useRouter();
-    const [date, setDate] = useState<null | string>(null);
+    // const [date, setDate] = useState<null | string>(null);
 
     const handleClick = useCallback(() => {
         router.push(`/conversations/${data.id}`);
@@ -59,9 +59,9 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
         return "Started a conversation";
     }, [lastMessage]);
 
-    useEffect(() => {
-        setDate(format(new Date(lastMessage.createdAt), "HH:mm"));
-    }, [lastMessage.createdAt]);
+    // useEffect(() => {
+    //     setDate(format(new Date(lastMessage.createdAt), "HH:mm"));
+    // }, [lastMessage.createdAt]);
 
     return (
         <div
@@ -113,7 +113,7 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
                                     font-light
                                 "
                             >
-                                {date}
+                                {format(new Date(lastMessage.createdAt), "HH:mm")}
                             </p>
                         )}
                     </div>
