@@ -4,7 +4,7 @@ import { useSession } from "next-auth/react";
 import Avatar from "@/app/components/Avatar";
 import { format } from "date-fns";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ImageModal from "./ImageModal";
 import { MdDelete } from "react-icons/md";
 
@@ -21,6 +21,7 @@ const MessageBox: React.FC<MessageBoxProps> = ({
 }) => {
   const session = useSession();
   const [imageModalOpen, setImageModalOpen] = useState(false);
+  const [date, setDate] = useState<null | string>(null);
 
   const isOwn = session?.data?.user?.email === data?.sender?.email;
   const seenList = (data.seen || [])
@@ -46,6 +47,10 @@ const MessageBox: React.FC<MessageBoxProps> = ({
     data.image ? "rounded-md p-0" : "rounded-full py-2 px-3",
   );
 
+  useEffect(() => {
+    setDate(format(new Date(data.createdAt), 'HH:mm'));
+  }, [data.createdAt]);
+
   return (
     <div className={container}>
       <div className={avatar}>
@@ -57,7 +62,7 @@ const MessageBox: React.FC<MessageBoxProps> = ({
             {data.sender.name}
           </div>
           <div className="text-xs text-gray-400">
-            {format(new Date(data.createdAt), 'HH:mm')}
+            {date}
           </div>
         </div>
         <div className={message}>

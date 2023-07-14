@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Conversation, Message, User } from "@prisma/client";
 import { format } from "date-fns";
@@ -24,6 +24,7 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
     const otherUser = useOtherUser(data);
     const session = useSession();
     const router = useRouter();
+    const [date, setDate] = useState<null | string>(null);
 
     const handleClick = useCallback(() => {
         router.push(`/conversations/${data.id}`);
@@ -57,6 +58,10 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
 
         return "Started a conversation";
     }, [lastMessage]);
+
+    useEffect(() => {
+        setDate(format(new Date(lastMessage.createdAt), "HH:mm"));
+    }, [lastMessage.createdAt]);
 
     return (
         <div
@@ -108,7 +113,7 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
                                     font-light
                                 "
                             >
-                                {format(new Date(lastMessage.createdAt), "HH:mm")}
+                                {date}
                             </p>
                         )}
                     </div>
