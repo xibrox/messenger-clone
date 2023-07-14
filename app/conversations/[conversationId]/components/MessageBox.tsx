@@ -91,6 +91,17 @@ const MessageBox: React.FC<MessageBoxProps> = ({
           )}
         </div>
         <div className="flex items-center gap-1">
+          {isLast && isOwn && seenList.length > 0 && (
+            <div
+            className="
+            text-xs
+            font-light
+            text-gray-500
+            "
+            >
+              {`Seen by ${seenList}`}
+            </div>
+          )}
           {isOwn && (
             <div
               onClick={onDelete}
@@ -102,17 +113,6 @@ const MessageBox: React.FC<MessageBoxProps> = ({
               "
             >
               <MdDelete size={16} />
-            </div>
-          )}
-          {isLast && isOwn && seenList.length > 0 && (
-            <div
-              className="
-                text-xs
-                font-light
-                text-gray-500
-              "
-            >
-              {`Seen by ${seenList}`}
             </div>
           )}
         </div>
