@@ -44,6 +44,8 @@ const Body: React.FC<BodyProps> = ({ initialMessages }) => {
           currentMessage.id === newMessage.id ? newMessage : currentMessage
         )
       );
+
+      bottomRef?.current?.scrollIntoView({ behavior: "smooth", block: "end" });
     };
 
     const removeMessageHandler = (deletedMessage: FullMessageType) => {
@@ -51,6 +53,8 @@ const Body: React.FC<BodyProps> = ({ initialMessages }) => {
         remove(current, { id: deletedMessage.id });
         return [...current];
       });
+
+      bottomRef?.current?.scrollIntoView({ behavior: "smooth", block: "end" });
     };
 
     pusherClient.bind("messages:new", messageHandler);
@@ -73,6 +77,8 @@ const Body: React.FC<BodyProps> = ({ initialMessages }) => {
           current.filter((message) => message.id !== messageId)
         );
       }
+
+      bottomRef?.current?.scrollIntoView({ behavior: "smooth", block: "end" });
     } catch (error) {
       console.log(error);
     }
