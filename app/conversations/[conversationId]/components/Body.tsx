@@ -6,7 +6,6 @@ import axios from "axios";
 import { pusherClient } from "@/app/libs/pusher";
 import { find, remove } from "lodash";
 import MessageBox from "./MessageBox";
-import useMessage from "@/app/hooks/useMessage";
 import useConversation from "@/app/hooks/useConversation";
 
 interface BodyProps {
