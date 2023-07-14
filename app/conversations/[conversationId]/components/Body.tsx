@@ -23,7 +23,7 @@ const Body: React.FC<BodyProps> = ({ initialMessages }) => {
 
   useEffect(() => {
     pusherClient.subscribe(conversationId);
-    bottomRef?.current?.scrollIntoView();
+    bottomRef?.current?.scrollIntoView({ behavior: "smooth", block: "end" });
 
     const messageHandler = (message: FullMessageType) => {
       axios.post(`/api/conversations/${conversationId}/seen`);
@@ -35,7 +35,7 @@ const Body: React.FC<BodyProps> = ({ initialMessages }) => {
         return [...current, message];
       });
 
-      bottomRef?.current?.scrollIntoView();
+      bottomRef?.current?.scrollIntoView({ behavior: "smooth", block: "end" });
     };
 
     const updateMessageHandler = (newMessage: FullMessageType) => {
@@ -88,7 +88,7 @@ const Body: React.FC<BodyProps> = ({ initialMessages }) => {
           onDelete={() => handleDeleteMessage(message.id)}
         />
       ))}
-      <div ref={bottomRef} className="pt-30" />
+      <div ref={bottomRef} />
     </div>
   );
 };
